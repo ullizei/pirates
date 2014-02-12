@@ -49,7 +49,9 @@ public class InputHandler : MonoBehaviour {
 		}
 
 		//Raycast 2D
-		RaycastHit2D hit2D = Physics2D.Raycast(new Vector2(touch.screenPosition.x, touch.screenPosition.y), Vector2.zero, rayCastDepth);
+		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(touch.screenPosition);
+		RaycastHit2D hit2D = Physics2D.Raycast(new Vector2(worldPosition.x, worldPosition.y), Vector2.zero, rayCastDepth);
+
 		if (hit2D.collider != null && hit2D.collider.gameObject == target)
 			return true;
 
