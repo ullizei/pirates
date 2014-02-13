@@ -5,8 +5,11 @@
       <File FileName="Assets\Scripts\GameMap\MapNode.cs" Line="16" Column="24" />
       <File FileName="Assets\UTILS\Scripts\Input\InputHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\UTILS\Scripts\Input\InputListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameMap\NodeConnection.cs" Line="26" Column="4" />
+      <File FileName="Assets\Scripts\GameMap\NodeConnection.cs" Line="22" Column="4" />
       <File FileName="..\..\..\repo\Inventions\Assets\_Game\Scripts\GameMenu\Editor\GameMapEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameMap\Editor\NodeConnectionEditor.cs" Line="41" Column="3" />
+      <File FileName="..\..\..\repo\Inventions\Assets\_Game\Scripts\GameMenu\GameMap.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\repo\mlw_garage\Assets\_GARAGE\iTweenPath\Editor\iTweenPathEditor.cs" Line="101" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
