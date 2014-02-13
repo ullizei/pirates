@@ -9,9 +9,67 @@ public class NodeConnection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+		if (point1 !=  null && point2 != null)
+		{
+			point1.AddConnection(this);
+			point2.AddConnection(this);
+
+			DrawConnection();
+		}
 	}
-	
+
+	public void DrawConnection() {
+
+		CR_Spline crSpline = GetCRSpline(point2);
+		int segments = 20;
+
+		LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+		lineRenderer.SetVertexCount(segments);
+		lineRenderer.SetWidth(5f, 5f);
+		lineRenderer.material = (Material) Resources.Load("MapConnectionMaterial");
+
+		float t;
+		for (int i = 0; i < segments; i++)
+		{
+			t = (float)i/(float)(segments-1);
+			lineRenderer.SetPosition(i, crSpline.Interp(t));
+		}
+	}
+
+	public bool ConnectsToNode(MapNode node) {
+
+		if (node == point1 || node == point2)
+			return true;
+		else
+			return false;
+	}
+
+	public CR_Spline GetCRSpline(MapNode endPoint) {
+
+		Vector3[] points = new Vector3[path.Count + 2];
+
+		if (endPoint == point2)
+		{
+			points[0] = point1.transform.position;
+
+			for (int i = 0; i < path.Count; i++)
+				points[i+1] = path[i];
+
+			points[points.Length-1] = point2.transform.position;
+		}
+		else if (endPoint == point1)
+		{
+			points[0] = point2.transform.position;
+
+			for (int i = 0; i < path.Count; i++)
+				points[i+1] = path[path.Count-1-i];
+
+			points[points.Length-1] = point1.transform.position;
+		}
+		return new CR_Spline(points);
+	}
+
 	void OnDrawGizmos() {
 
 		if (point1 != null && point2 != null)

@@ -21,8 +21,14 @@ public class NodeConnectionEditor : Editor {
 		EditorGUILayout.PrefixLabel("Map node 2");
 		_target.point2 = (MapNode) EditorGUILayout.ObjectField(_target.point2, typeof(MapNode), true);
 
-		if (GUILayout.Button("Add path node"))
-			AddPathNode();
+		if (_target.point1 != null && _target.point2 != null)
+		{
+			if (GUILayout.Button("Add path node"))
+				AddPathNode();
+
+			if (GUILayout.Button("Remove path node"))
+				RemovePathNode();
+		}
 
 		if(GUI.changed)
 			EditorUtility.SetDirty(_target);			
@@ -33,6 +39,14 @@ public class NodeConnectionEditor : Editor {
 		Vector3 newNode =(_target.point2.transform.position - _target.point1.transform.position) /2f;
 		newNode += _target.point1.transform.position;
 		_target.path.Add(newNode);
+	}
+
+	private void RemovePathNode() {
+
+		if (_target.path.Count > 0)
+		{
+			_target.path.RemoveAt(_target.path.Count-1);
+		}
 	}
 
 	void OnSceneGUI() {

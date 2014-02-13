@@ -78,7 +78,7 @@ public class InputHandler : MonoBehaviour {
 		
 		//Raycast 2D
 		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(touch.screenPosition);
-		RaycastHit2D hit2D = Physics2D.Raycast(new Vector2(worldPosition.x, worldPosition.y), Vector2.zero, rayCastDepth);//(new Vector2(touch.screenPosition.x, touch.screenPosition.y), Vector2.zero, rayCastDepth);
+		RaycastHit2D hit2D = Physics2D.Raycast(new Vector2(worldPosition.x, worldPosition.y), Vector2.zero, rayCastDepth);
 		if (hit2D.collider != null)
 		{
 			result = hit2D.collider.gameObject;
@@ -87,6 +87,22 @@ public class InputHandler : MonoBehaviour {
 		
 		//no cigar
 		return false;
+	}
+
+	public static bool TouchHitNothing(SimTouch touch, float rayCastDepth = 1500f) {
+
+		//Raycast 3D
+		Ray ray = Camera.main.ScreenPointToRay(touch.screenPosition);
+		if (Physics.Raycast(ray))
+			return false;
+
+		//Raycast 2D
+		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(touch.screenPosition);
+		RaycastHit2D hit2D = Physics2D.Raycast(new Vector2(worldPosition.x, worldPosition.y), Vector2.zero, rayCastDepth);
+		if (hit2D.collider != null)
+			return false;
+
+		return true;
 	}
 
 
