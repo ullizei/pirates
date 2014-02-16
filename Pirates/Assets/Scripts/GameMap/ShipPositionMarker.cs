@@ -32,7 +32,7 @@ public class ShipPositionMarker : MonoBehaviour {
 
 	public bool TravelToPort(MapNode newPort) {
 
-		if (isSailing)
+		if (isSailing || newPort == currentPort)
 			return false;
 
 		NodeConnection connection = currentPort.GetConnectionToNode(newPort);
@@ -49,11 +49,14 @@ public class ShipPositionMarker : MonoBehaviour {
 
 		isSailing = true;
 
+		CameraControl.Instance.AllowScrolling = false;
 		float cameraLerpTime = CameraControl.Instance.LerpToPosition(_transform.position);
 		yield return new WaitForSeconds(cameraLerpTime+0.1f);
 
+		SoundManager.PlaySfx(Sfx.Wave);
+
 		CR_Spline crSpline = connection.GetCRSpline(newPort);
-		float travelTime = 1f;
+		float travelTime = 1.25f;
 		float elapsedTime = 0f;
 
 		Vector3 pos;
@@ -69,6 +72,8 @@ public class ShipPositionMarker : MonoBehaviour {
 
 		currentPort = newPort;
 		isSailing = false;
+		CameraControl.Instance.AllowScrolling = true;
+
 	}
 
 	void OnDestroy() {

@@ -31,7 +31,7 @@ public class GameStateManager : MonoBehaviour {
 		if (Application.loadedLevelName == "TestScene")
 		{
 			currentState = GameState.GameMap;
-			SoundManager.Instance.PlayMusic(Music.piratloop1);
+			SoundManager.Instance.PlayMusic(Music.piratloop2);
 		}
 	}
 

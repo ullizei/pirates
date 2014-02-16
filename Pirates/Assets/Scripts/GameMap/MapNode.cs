@@ -27,6 +27,10 @@ public class MapNode : InputHandler {
 		}
 	}
 
+	public List<NodeConnection> GetConnections() {
+		return connections;
+	}
+
 	public NodeConnection GetConnectionToNode(MapNode node) {
 
 		foreach (NodeConnection connection in connections)
@@ -44,6 +48,14 @@ public class MapNode : InputHandler {
 
 		connections.Add (connection);
 	}
+
+	public float GetDistanceToNode(MapNode target) {
+
+		float dX = target.transform.position.x - transform.position.x;
+		float dY = target.transform.position.y - transform.position.y;
+		return Mathf.Sqrt(dX*dX + dY*dY);
+	}
+
 
 	void OnDestroy() {
 		ListenForInput(false);

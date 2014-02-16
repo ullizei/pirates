@@ -10,9 +10,16 @@ public class CameraControl : InputHandler {
 
 	private bool isScrolling = false;
 	private int scrollFinger;
+	private bool allowScrolling = true;
 
 	public static CameraControl Instance {
 		get {return instance;}
+	}
+
+	public bool AllowScrolling {
+
+		get {return allowScrolling;}
+		set {allowScrolling = value;}
 	}
 
 	void Awake() {
@@ -30,10 +37,13 @@ public class CameraControl : InputHandler {
 
 	public override void OnBeganTouch (SimTouch touch)
 	{
-		if (!isScrolling && TouchHitNothing(touch))
+		if (allowScrolling)
 		{
-			isScrolling = true;
-			scrollFinger = touch.fingerID;
+			if (!isScrolling && TouchHitNothing(touch))
+			{
+				isScrolling = true;
+				scrollFinger = touch.fingerID;
+			}
 		}
 	}
 
@@ -41,7 +51,10 @@ public class CameraControl : InputHandler {
 	{
 		if (isScrolling && touch.fingerID == scrollFinger)
 		{
-			Scroll(touch.deltaScreenPosition);
+			if (allowScrolling)
+				Scroll(touch.deltaScreenPosition);
+			else
+				isScrolling = false;
 		}
 	}
 

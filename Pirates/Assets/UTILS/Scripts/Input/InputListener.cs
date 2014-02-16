@@ -29,7 +29,7 @@ public class InputListener : MonoBehaviour {
 		{
 			if (instance == null)
 			{
-				instance = Camera.main.gameObject.AddComponent<InputListener>();
+				instance = (InputListener) Camera.main.gameObject.AddComponent<InputListener>();
 				instance.Init();
 			}
 			return instance;

@@ -3,7 +3,8 @@ using System.Collections;
 
 public enum Sfx
 {
-	Click
+	Click,
+	Wave
 }
 
 public enum Music
