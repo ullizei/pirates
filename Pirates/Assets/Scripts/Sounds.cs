@@ -10,5 +10,6 @@ public enum Sfx
 public enum Music
 {
 	piratloop1,
-	piratloop2
+	piratloop2,
+	piratloop3
 }

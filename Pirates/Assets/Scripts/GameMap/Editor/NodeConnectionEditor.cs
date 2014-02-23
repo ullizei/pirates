@@ -51,8 +51,6 @@ public class NodeConnectionEditor : Editor {
 
 	void OnSceneGUI() {
 
-	//private void DrawHandles() {
-
 		for (int i = 0; i < _target.path.Count; i++)
 			_target.path[i] = Handles.PositionHandle(_target.path[i], Quaternion.identity);
 	}
