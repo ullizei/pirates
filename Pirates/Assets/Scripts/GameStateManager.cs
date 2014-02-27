@@ -19,6 +19,7 @@ public class GameStateManager : MonoBehaviour {
 			if (instance == null)
 			{
 				GameObject gsm = new GameObject("GameStateManager");
+				DontDestroyOnLoad(gsm);
 				instance = gsm.AddComponent<GameStateManager>();
 				instance.Init();
 			}
@@ -37,5 +38,11 @@ public class GameStateManager : MonoBehaviour {
 
 	public GameState GetCurrentState() {
 		return currentState;
+	}
+
+	public void ComeAlive() {}
+
+	void OnDestroy() {
+		instance = null;
 	}
 }

@@ -40,6 +40,7 @@ public class ItemDatabaseEditor : Editor {
 				int newItemIndex = items.arraySize++;
 				var newItem = items.GetArrayElementAtIndex(newItemIndex);
 				newItem.FindPropertyRelative("itemName").stringValue = "NEW ITEM";
+				newItem.FindPropertyRelative("itemDescription").stringValue = "";
 				newItem.FindPropertyRelative("itemType").enumValueIndex = (int) ItemType.NONE;
 				newItem.FindPropertyRelative("users").enumValueIndex = (int) ItemUserGroup.All;
 				newItem.FindPropertyRelative("levelRequirement").intValue = 1;
@@ -89,7 +90,7 @@ public class ItemDatabaseEditor : Editor {
 
 	private GUIStyle GetHeaderStyle() {
 		
-		GUIStyle headerStyle = new GUIStyle();
+		GUIStyle headerStyle = new GUIStyle(EditorStyles.label);
 		
 		headerStyle.fontSize = 12;
 		headerStyle.fontStyle = FontStyle.Bold;

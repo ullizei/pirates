@@ -101,4 +101,8 @@ public class SoundManager : MonoBehaviour {
 	private static AudioClip LoadMusic(Music music) {
 		return (AudioClip) Resources.Load("Music/"+music.ToString());
 	}
+
+	void OnDestroy() {
+		instance = null;
+	}
 }

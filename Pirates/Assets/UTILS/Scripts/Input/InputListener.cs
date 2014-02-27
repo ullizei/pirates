@@ -29,7 +29,7 @@ public class InputListener : MonoBehaviour {
 		{
 			if (instance == null)
 			{
-				instance = (InputListener) Camera.main.gameObject.AddComponent<InputListener>();
+				instance = (InputListener) GameStateManager.Instance.gameObject.AddComponent<InputListener>();
 				instance.Init();
 			}
 			return instance;
@@ -41,7 +41,7 @@ public class InputListener : MonoBehaviour {
 		lastTouches = new List<SimTouch>();
 		screenRect = new Rect(0f, 0f, Screen.width, Screen.height);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -190,7 +190,10 @@ public class InputListener : MonoBehaviour {
 		}
 		return null;
 	}
-	
+
+	public static bool Exists() {
+		return instance != null;
+	}
 
 	void OnDestroy() {
 		instance = null;

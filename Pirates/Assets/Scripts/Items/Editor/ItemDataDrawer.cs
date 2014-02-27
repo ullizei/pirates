@@ -8,6 +8,7 @@ public class ItemDataDrawer : PropertyDrawer {
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
 
 		var itemName = property.FindPropertyRelative("itemName");
+		var itemDesc = property.FindPropertyRelative("itemDescription");
 		var itemType = property.FindPropertyRelative("itemType");
 		var users = property.FindPropertyRelative("users");
 		var levelReq = property.FindPropertyRelative("levelRequirement");
@@ -47,6 +48,10 @@ public class ItemDataDrawer : PropertyDrawer {
 		EditorGUILayout.PrefixLabel("Level");
 		levelReq.intValue = EditorGUILayout.IntField(levelReq.intValue);
 		EditorGUILayout.EndHorizontal();
+
+		//Description
+		GUILayout.Label("Description:");
+		itemDesc.stringValue = EditorGUILayout.TextArea(itemDesc.stringValue);
 		EditorGUILayout.Space();
 
 		//Bonuses...
@@ -65,7 +70,7 @@ public class ItemDataDrawer : PropertyDrawer {
 
 	private GUIStyle GetHeaderStyle() {
 		
-		GUIStyle headerStyle = new GUIStyle();
+		GUIStyle headerStyle = new GUIStyle(EditorStyles.label);
 		
 		headerStyle.fontSize = 11;
 		headerStyle.fontStyle = FontStyle.BoldAndItalic;

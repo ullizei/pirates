@@ -18,14 +18,4 @@ public class ItemDatabase : ScriptableObject {
 		}
 	}
 
-	public int AddNewItem() {
-
-		items.Add(new ItemData());
-		return items.Count;
-	}
-
-	public void Test() {
-		Debug.Log("Hello hej!");
-
-	}
 }

@@ -17,11 +17,14 @@ public class InputHandler : MonoBehaviour {
 		}
 		else if (!listen && isListening)
 		{
-			InputListener.Instance.onBeganTouch -= this.OnBeganTouch;
-			InputListener.Instance.onMovedTouch -= this.OnMovedTouch;
-			InputListener.Instance.onStationaryTouch -= this.OnStationaryTouch;
-			InputListener.Instance.onEndedOrCaceledTouch -= this.OnEndedOrCanceledTouch;
-			InputListener.Instance.onAllInput -= this.OnAllInput;
+			if (InputListener.Exists())
+			{
+				InputListener.Instance.onBeganTouch -= this.OnBeganTouch;
+				InputListener.Instance.onMovedTouch -= this.OnMovedTouch;
+				InputListener.Instance.onStationaryTouch -= this.OnStationaryTouch;
+				InputListener.Instance.onEndedOrCaceledTouch -= this.OnEndedOrCanceledTouch;
+				InputListener.Instance.onAllInput -= this.OnAllInput;
+			}
 			isListening = false;
 		}
 	}

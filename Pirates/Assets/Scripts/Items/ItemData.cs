@@ -28,6 +28,7 @@ public enum ItemUserGroup {
 public class ItemData {
 
 	public string itemName = "NEW ITEM";
+	public string itemDescription = "";
 	public ItemType itemType = ItemType.NONE;
 	public ItemUserGroup users = ItemUserGroup.All;
 	public int levelRequirement = 1;

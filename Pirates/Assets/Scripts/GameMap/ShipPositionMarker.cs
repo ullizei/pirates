@@ -23,7 +23,6 @@ public class ShipPositionMarker : MonoBehaviour {
 		_transform = transform;
 		_transform.position = new Vector3(currentPort.transform.position.x, currentPort.transform.position.y, _transform.position.z);
 		CameraControl.Instance.MoveToPosition(_transform.position);
-		GameStateManager.Instance.GetCurrentState();
 	}
 
 	public static ShipPositionMarker Instance {
