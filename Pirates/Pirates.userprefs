@@ -1,19 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Inventory.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UTILS\Scripts\PlayerPrefsHelper.cs">
     <Files>
-      <File FileName="Assets\Scripts\Items\ItemData.cs" Line="31" Column="37" />
-      <File FileName="Assets\Scripts\Items\Editor\ItemDataDrawer.cs" Line="64" Column="74" />
-      <File FileName="Assets\Scripts\Items\Editor\ItemDatabaseEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameStateManager.cs" Line="47" Column="3" />
-      <File FileName="Assets\UTILS\Scripts\Input\InputListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameMap\ShipPositionMarker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SoundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\UTILS\Scripts\Input\InputHandler.cs" Line="7" Column="2" />
-      <File FileName="Assets\Scripts\Items\ItemDatabase.cs" Line="20" Column="2" />
-      <File FileName="Assets\Scripts\Inventory.cs" Line="6" Column="1" />
-      <File FileName="Assets\Scripts\Character\CharacterData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Character\Character.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Items\ItemDatabase.cs" Line="25" Column="4" />
+      <File FileName="Assets\Scripts\Items\ItemData.cs" Line="44" Column="25" />
+      <File FileName="Assets\Scripts\Items\Editor\ItemDatabaseEditor.cs" Line="46" Column="85" />
+      <File FileName="Assets\Scripts\Items\Editor\ItemDataDrawer.cs" Line="52" Column="35" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="68" Column="33" />
+      <File FileName="Assets\UTILS\Scripts\PlayerPrefsHelper.cs" Line="14" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

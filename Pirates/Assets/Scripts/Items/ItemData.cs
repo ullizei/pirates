@@ -23,6 +23,13 @@ public enum ItemUserGroup {
 	All
 }
 
+public enum ItemRarity {
+	Common,
+	Unusual,
+	Rare,
+	Unique
+}
+
 
 [System.Serializable]
 public class ItemData {
@@ -31,6 +38,7 @@ public class ItemData {
 	public string itemDescription = "";
 	public ItemType itemType = ItemType.NONE;
 	public ItemUserGroup users = ItemUserGroup.All;
+	public ItemRarity rarity = ItemRarity.Common;
 	public int levelRequirement = 1;
 
 	public int hpBonus = 0;

@@ -43,6 +43,7 @@ public class ItemDatabaseEditor : Editor {
 				newItem.FindPropertyRelative("itemDescription").stringValue = "";
 				newItem.FindPropertyRelative("itemType").enumValueIndex = (int) ItemType.NONE;
 				newItem.FindPropertyRelative("users").enumValueIndex = (int) ItemUserGroup.All;
+				newItem.FindPropertyRelative("rarity").enumValueIndex = (int) ItemRarity.Common;
 				newItem.FindPropertyRelative("levelRequirement").intValue = 1;
 				newItem.FindPropertyRelative("hpBonus").intValue = 0;
 				newItem.FindPropertyRelative("swaggerBonus").intValue = 0;

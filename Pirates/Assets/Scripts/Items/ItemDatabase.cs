@@ -18,4 +18,14 @@ public class ItemDatabase : ScriptableObject {
 		}
 	}
 
+	public List<ItemData> GetAllItemsOfType(ItemType itemType) {
+
+		List<ItemData> resultList = new List<ItemData>();
+		foreach (ItemData data in items)
+		{
+			if (data.itemType == itemType)
+				resultList.Add(data);
+		}
+		return resultList;
+	}
 }

@@ -11,6 +11,7 @@ public class ItemDataDrawer : PropertyDrawer {
 		var itemDesc = property.FindPropertyRelative("itemDescription");
 		var itemType = property.FindPropertyRelative("itemType");
 		var users = property.FindPropertyRelative("users");
+		var rarity = property.FindPropertyRelative("rarity");
 		var levelReq = property.FindPropertyRelative("levelRequirement");
 
 		var hpBonus = property.FindPropertyRelative("hpBonus");
@@ -41,6 +42,13 @@ public class ItemDataDrawer : PropertyDrawer {
 		EditorGUILayout.PrefixLabel("Usable by");
 		ItemUserGroup selectedGroup = (ItemUserGroup) EditorGUILayout.EnumPopup((ItemUserGroup) users.enumValueIndex);
 		users.enumValueIndex = (int) selectedGroup;
+		EditorGUILayout.EndHorizontal();
+
+		//Rarity
+		EditorGUILayout.BeginHorizontal();
+		EditorGUILayout.PrefixLabel("Rarity");
+		ItemRarity selectedRarity = (ItemRarity) EditorGUILayout.EnumPopup((ItemRarity) rarity.enumValueIndex);
+		rarity.enumValueIndex = (int) selectedRarity;
 		EditorGUILayout.EndHorizontal();
 
 		//Level requirement
