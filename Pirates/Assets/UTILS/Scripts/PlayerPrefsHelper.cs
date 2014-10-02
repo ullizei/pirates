@@ -31,6 +31,7 @@ public static class PlayerPrefsHelper {
 					formatter.Serialize(memStream, _object);
 					
 					PlayerPrefs.SetString(playerPrefsKey, System.Convert.ToBase64String(memStream.GetBuffer()));
+					memStream.Close();
 				}
 				else
 					Debug.Log("Could not save object. Keystring was empty.");
@@ -55,6 +56,7 @@ public static class PlayerPrefsHelper {
 				MemoryStream memStream = new MemoryStream(System.Convert.FromBase64String(data));
 				
 				return formatter.Deserialize(memStream);
+				memStream.Close();
 			}
 			else
 				Debug.Log("Could not load object. String matching key "+playerPrefsKey+" was empty");
