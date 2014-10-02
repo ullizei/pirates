@@ -20,7 +20,6 @@ public class ItemDatabaseEditor : Editor {
 		foldoutStatus = new List<bool>();
 		for (int i = 0; i < _target.items.Count; i++)
 			foldoutStatus.Add(false);
-
 	}
 
 	public override void OnInspectorGUI() {

@@ -15,8 +15,8 @@ public class StatsPanel : MonoBehaviour {
 	
 	void ShowStats(CharacterData selecetdCharacter)
 	{
-		inspectedCharacterData = selecetdCharacter;
-		inspectedCharacterName.text = selecetdCharacter.name;
-		inspectedCharacterJobLevel.text = "Level "+selecetdCharacter.level+" "+selecetdCharacter.job;
+//		inspectedCharacterData = selecetdCharacter;
+//		inspectedCharacterName.text = selecetdCharacter.name;
+//		inspectedCharacterJobLevel.text = "Level "+selecetdCharacter.level+" "+selecetdCharacter.job;
 	}
 }

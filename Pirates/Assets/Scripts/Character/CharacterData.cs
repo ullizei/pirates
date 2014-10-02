@@ -12,14 +12,23 @@ public class CharacterData {
 
 	public string name;
 	public string description;
-	public CharacterJob job; 
+	//public CharacterJob job; 
 
-	public int level;
-	public int exp;
-	public int hp;
+	//public int level;
+	//public int exp;
+	//public int hp;
 
 	public CharacterStats stats;
+
+	public CharacterData() {
+
+		name = "NEW CHARACTER";
+		description = "";
+		stats = new CharacterStats();
+	}
 }
+
+
 
 /* Fiender!
 

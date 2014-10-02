@@ -16,5 +16,13 @@ public class EnemyDatabase : ScriptableObject {
 			
 			return instance;
 		}
+	}	
+
+	public void InitEntry(int index) {
+
+		if (index < enemies.Count)
+			enemies[index] = new CharacterData();
+		else
+			Debug.Log("index does not exist!");
 	}
 }
