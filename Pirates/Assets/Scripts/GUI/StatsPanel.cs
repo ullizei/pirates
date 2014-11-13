@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StatsPanel : MonoBehaviour {
 
-	public TextMesh inspectedCharacterName;
-	public TextMesh inspectedCharacterJobLevel;
+	public Text inspectedCharacterName;
+	public Text inspectedCharacterJobLevel;
 
 	private CharacterData inspectedCharacterData;
 
