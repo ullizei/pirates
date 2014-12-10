@@ -10,3 +10,11 @@ public class CharacterStats {
 	public int mind;
 	public int health;
 }
+
+public enum StatType {
+	Swagger,
+	Strength,
+	Agility,
+	Mind,
+	Health
+}
