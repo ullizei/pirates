@@ -43,15 +43,16 @@ public class StatsPanel : MonoBehaviour {
 		elemRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset, 10f);
 
 		//Experience meter
-		element = (GameObject) Instantiate(Resources.Load (resourcePath+"MeterBar"));
-		elemRect = element.GetComponent<RectTransform>();
+		//element = (GameObject) Instantiate(Resources.Load (resourcePath+"MeterBar"));
+		elemRect = StatsPanelMeterBar.Create("EXP", Color.blue); //element.GetComponent<RectTransform>();
 		elemRect.SetParent(rect, false);
 		offset += 45f;
 		elemRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset, 10f);
+		//elemRect.GetComponent<StatsPanelMeterBar>().UpdateMeter(78, 254, -9);
 
 		//HP meter
-		element = (GameObject) Instantiate(Resources.Load (resourcePath+"MeterBar"));
-		elemRect = element.GetComponent<RectTransform>();
+		//element = (GameObject) Instantiate(Resources.Load (resourcePath+"MeterBar"));
+		elemRect = StatsPanelMeterBar.Create("HP", Color.green); //element.GetComponent<RectTransform>();
 		elemRect.SetParent(rect, false);
 		offset += 50f;
 		elemRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset, 10f);

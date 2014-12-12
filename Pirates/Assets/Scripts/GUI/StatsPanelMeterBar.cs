@@ -1,86 +1,89 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StatsPanelMeterBar : MonoBehaviour {
 
-	private GameObject meterBar;
-	private TextMesh headerText;
-	private TextMesh modifierText;
+	public Text label;
+	public Text modifierInfoLabel;
+	public Image meterBar;
 
+	private string header;
 	private int maxValue;
 	private int currentValue;
-	private int valueModifier = 0;
-	private string header;
+	private float valueModifier = 0f;
+
 	private Color meterColor;
+	private Color orgModifierColor;
 
 
-	public static StatsPanelMeterBar Create(int _maxValue, int _currentValue, string meterBarHeader, Color color) {
+	public static RectTransform Create(string meterBarHeader, Color color) {
 
-		GameObject meterBarObject = (GameObject) Instantiate(Resources.Load("GUI/StatsPanelMeterBar"));
+		GameObject meterBarObject = (GameObject) Instantiate(Resources.Load("GUI/StatsPanel/MeterBar"));
 		StatsPanelMeterBar statsPanelMeterBar = meterBarObject.GetComponent<StatsPanelMeterBar>();
 
-		statsPanelMeterBar.maxValue = _maxValue;
-		statsPanelMeterBar.currentValue = _currentValue;
 		statsPanelMeterBar.header = meterBarHeader;
-		statsPanelMeterBar.meterColor = color;
+		statsPanelMeterBar.label.text = meterBarHeader;
+		statsPanelMeterBar.meterBar.color = color;
+		//statsPanelMeterBar.modifierInfoLabel.text = "";
 		statsPanelMeterBar.Init();
 
-		return statsPanelMeterBar;
-	}
-
-	// Use this for initialization
-	void Start () {
-
-
-
+		return meterBarObject.GetComponent<RectTransform>();
 	}
 
 	public void Init() {
 
-
+		orgModifierColor = modifierInfoLabel.color;
 	}
 
-	public void UpdateValueModifier(int amount) {
 
-		valueModifier += amount;
-		ResizeMeter();
-		SetText();
+	// Use this for initialization
+	void Start () {
+				
 	}
 
-	private void SetupMeterBar() {
+	public void UpdateMeter(int _currentValue, int _maxValue, float _valueModifier) {
 
-		meterBar = gameObject.GetChildByName("MeterBar");
-		headerText = gameObject.GetChildByName("InfoText").GetComponent<TextMesh>();
-		modifierText = gameObject.GetChildByName("ModifierText").GetComponent<TextMesh>();
+		currentValue = _currentValue;
+		maxValue = _maxValue;
+		valueModifier = _valueModifier;
 
-		meterBar.renderer.material.color = meterColor;
-		ResizeMeter();
-		SetText();
-	}
+		float fill = ((float) currentValue) / ((float) maxValue);
+		meterBar.fillAmount = fill;
 
-	private void SetText() {
+		label.text = header + ": "+currentValue+"/"+maxValue;
 
-		int modifiedMaxValue = maxValue + valueModifier;
-		headerText.text = header+": "+currentValue+"/"+modifiedMaxValue;
-
-		if (valueModifier != 0)
-		{
-			modifierText.text = "("+valueModifier+")";
-			if (valueModifier < 0)
-				modifierText.color = Color.red;
+		modifierInfoLabel.color = orgModifierColor;
+		if (valueModifier != 0) {
+			if (valueModifier > 0)
+				modifierInfoLabel.text = "(+"+valueModifier+"%)";
 			else
-				modifierText.color = Color.green;
+				modifierInfoLabel.text = "("+valueModifier+"%)";
 		}
 		else
-			modifierText.text = "";
+			modifierInfoLabel.text = "";
 	}
-	
-	private void ResizeMeter() {
 
-		int modifiedMaxValue = maxValue + valueModifier;
-		float metersize = (float)currentValue / (float)modifiedMaxValue;
-		float fullMeterSize = meterBar.transform.localScale.x;
-		meterBar.transform.localScale = new Vector3(fullMeterSize*metersize, meterBar.transform.localScale.y, 1f);
-		meterBar.transform.localPosition = Vector3.right * (meterBar.transform.localScale.x / 2f);
-	}	
+	public void ShowMaxValueUpdate(int newMaxValue) {
+
+		float fill = ((float) currentValue) / ((float) newMaxValue);
+		meterBar.fillAmount = fill;
+
+		label.text = header + ": "+currentValue+"/"+newMaxValue;
+
+		float valueChange = 1f - ((float) newMaxValue) / ((float) maxValue);
+
+		if (valueChange >= 0f)
+			modifierInfoLabel.text = "(+"+valueChange+"%)";
+		else
+			modifierInfoLabel.text = "("+valueChange+"%)";
+
+		modifierInfoLabel.text = "("+valueModifier+")";
+		if (valueChange > 0f)
+			modifierInfoLabel.color = Color.green;
+		else if (valueChange < 0f)
+			modifierInfoLabel.color = Color.red;
+		else
+			modifierInfoLabel.color = orgModifierColor;
+	}
 }
