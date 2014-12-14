@@ -44,6 +44,9 @@ public static class PlayerPrefsHelper {
 	}
 	
 	public static object LoadObject(string playerPrefsKey) {
+
+		object obj = null;
+
 		#if UNITY_IPHONE
 		System.Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 		#endif
@@ -55,7 +58,7 @@ public static class PlayerPrefsHelper {
 				BinaryFormatter formatter = new BinaryFormatter();
 				MemoryStream memStream = new MemoryStream(System.Convert.FromBase64String(data));
 				
-				return formatter.Deserialize(memStream);
+				obj = formatter.Deserialize(memStream);
 				memStream.Close();
 			}
 			else
@@ -64,6 +67,6 @@ public static class PlayerPrefsHelper {
 		else
 			Debug.Log("Could not load object. Key "+playerPrefsKey+" does not exist in PlayerPrefs");
 		
-		return null;
+		return obj;
 	}
 }

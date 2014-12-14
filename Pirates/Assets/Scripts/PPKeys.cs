@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Keys {
+public class PPKeys {
 
-	public static string InventoryPPKey {
+	public static string CrewInventoryPPKey {
 		get {return "PPKey_Inventory";}
 	}
 }

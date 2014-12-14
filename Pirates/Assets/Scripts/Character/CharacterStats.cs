@@ -8,7 +8,7 @@ public class CharacterStats {
 	public int strength;
 	public int agility;
 	public int mind;
-	public int health;
+	public int health;	
 }
 
 public enum StatType {

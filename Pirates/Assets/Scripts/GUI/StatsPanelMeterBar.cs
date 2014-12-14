@@ -17,7 +17,7 @@ public class StatsPanelMeterBar : MonoBehaviour {
 	private Color orgModifierColor;
 
 
-	public static RectTransform Create(string meterBarHeader, Color color) {
+	public static StatsPanelMeterBar Create(string meterBarHeader, Color color) {
 
 		GameObject meterBarObject = (GameObject) Instantiate(Resources.Load("GUI/StatsPanel/MeterBar"));
 		StatsPanelMeterBar statsPanelMeterBar = meterBarObject.GetComponent<StatsPanelMeterBar>();
@@ -28,7 +28,7 @@ public class StatsPanelMeterBar : MonoBehaviour {
 		//statsPanelMeterBar.modifierInfoLabel.text = "";
 		statsPanelMeterBar.Init();
 
-		return meterBarObject.GetComponent<RectTransform>();
+		return statsPanelMeterBar;
 	}
 
 	public void Init() {

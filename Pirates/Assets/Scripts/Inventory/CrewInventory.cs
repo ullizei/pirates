@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Inventory {
+public class CrewInventory {
 
 	[SerializeField]
 	private Dictionary<string, ItemData> items;
@@ -10,16 +10,16 @@ public class Inventory {
 	[SerializeField]
 	private Dictionary<string, ItemInventoryInfo> itemInfos;
 
-	private static Inventory instance = null;
-	public static Inventory Instance {
+	private static CrewInventory instance = null;
+	public static CrewInventory Instance {
 		get
 		{
 			if (instance == null)
 			{
-				if (PlayerPrefs.HasKey(Keys.InventoryPPKey))
-					instance = (Inventory) PlayerPrefsHelper.LoadObject(Keys.InventoryPPKey);
+				if (PlayerPrefs.HasKey(PPKeys.CrewInventoryPPKey))
+					instance = (CrewInventory) PlayerPrefsHelper.LoadObject(PPKeys.CrewInventoryPPKey);
 				else
-					instance = new Inventory();
+					instance = new CrewInventory();
 			}
 			return instance;
 		}
@@ -83,7 +83,7 @@ public class Inventory {
 	}
 
 	public void Save() {
-		PlayerPrefsHelper.SaveObject<Inventory>(this, Keys.InventoryPPKey);
+		PlayerPrefsHelper.SaveObject<CrewInventory>(this, PPKeys.CrewInventoryPPKey);
 	}		
 }
 

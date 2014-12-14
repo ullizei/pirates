@@ -26,6 +26,11 @@ public class CharacterData {
 		description = "";
 		stats = new CharacterStats();
 	}
+
+	public CharacterData(string _name, CharacterStats _stats) {
+		name = _name;
+		stats = _stats;
+	}
 }
 
 

@@ -1,9 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\StatsPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Inventory\CrewInventory.cs">
     <Files>
+      <File FileName="Assets\Scripts\GUI\CrewPanel.cs" Line="25" Column="60" />
+      <File FileName="Assets\Scripts\GUI\StatsPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Character\CharacterStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\StatsPanel.cs" Line="22" Column="5" />
+      <File FileName="Assets\Scripts\GUI\StatsPanelMeterBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\Stat.cs" Line="1" Column="1" />
+      <File FileName="Assets\UTILS\Scripts\PlayerPrefsHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\CharacterSelectButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\EquipmentSlot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character\CharacterData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character\Character.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Inventory\CrewInventory.cs" Line="86" Column="65" />
+      <File FileName="Assets\Scripts\Inventory\CharacterInventory.cs" Line="32" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
