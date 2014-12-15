@@ -8,30 +8,35 @@ public class CharacterSelectButton : MonoBehaviour {
 	public GameObject selectionFrame;
 
 	private Button button;
-	private CharacterData character;
+	private Character character;
 
-	public static CharacterSelectButton Create(CharacterData characterData) {
+	public static CharacterSelectButton Create(Character _character) {
 
 		GameObject obj = (GameObject) Instantiate(Resources.Load("GUI/CharacterSelectBar/CharacterSelectButton"));
 		CharacterSelectButton charSelectButton = obj.GetComponent<CharacterSelectButton>();
-		charSelectButton.Init(characterData);
+		charSelectButton.Init(_character);
 		return charSelectButton;
 	}
 
-	private void Init(CharacterData characterData) {
-		character = characterData;
+	private void Init(Character _character) {
+		character = _character;
 		selectionFrame.SetActive(false);
-		nameTag.text = character.name;
+		nameTag.text = character.Name;
 		button = GetComponent<Button>();
 		button.onClick.AddListener(this.OnClick);
 	}
 
 	public void OnClick() {
-		Select(true);
+		Select();
 	}
 
-	public void Select(bool select) {
-		selectionFrame.SetActive(select);
+	public void Select() {
+		selectionFrame.SetActive(true);
+		CrewInspector.Instance.OnSelectedCharacter(character);
 	}
-
+	
+	public void Deselect() {
+		if (character != CrewInspector.Instance.CurrentInspectedCharacter)
+			selectionFrame.SetActive(false);
+	}
 }

@@ -20,15 +20,37 @@ public class StatsPanel : MonoBehaviour {
 
 	private Dictionary<StatType, Stat> stats;
 
-	private CharacterData inspectedCharacterData;
+	//private CharacterData inspectedCharacterData;
 
 
 	private string resourcePath = "GUI/StatsPanel/";
 
 	// Use this for initialization
-	void Start () {
+	public void Init () {
 		rect = GetComponent<RectTransform>();
 		LayoutElements();
+	}
+
+	public void ShowCharacterStats(Character selectedCharacter)
+	{
+		inspectedCharacterName.text = selectedCharacter.Name;
+
+		StatType[] statTypes = (StatType[]) System.Enum.GetValues(typeof(StatType));
+		int value;
+		int modifier;
+		for (int i = 0; i < statTypes.Length; i++)
+		{
+			value = selectedCharacter.GetBaseStat(statTypes[i]);
+			modifier = selectedCharacter.GetStatModifier(statTypes[i]);
+			stats[statTypes[i]].SetValueAndModifier(value+modifier, modifier);
+		}
+
+		expMeter.UpdateMeter(75, 200, 0f);
+		hpMeter.UpdateMeter(23, 52, 0f);
+
+		//		inspectedCharacterData = selecetdCharacter;
+		//		inspectedCharacterName.text = selecetdCharacter.name;
+		//		inspectedCharacterJobLevel.text = "Level "+selecetdCharacter.level+" "+selecetdCharacter.job;
 	}
 
 	private void LayoutElements() {
@@ -95,12 +117,5 @@ public class StatsPanel : MonoBehaviour {
 		elemRect.SetParent(rect, false);
 		elemRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, offsetX, elemRect.sizeDelta.x);
 		elemRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offsetY, elemRect.sizeDelta.y);
-	}
-	
-	void ShowStats(CharacterData selecetdCharacter)
-	{
-//		inspectedCharacterData = selecetdCharacter;
-//		inspectedCharacterName.text = selecetdCharacter.name;
-//		inspectedCharacterJobLevel.text = "Level "+selecetdCharacter.level+" "+selecetdCharacter.job;
 	}
 }

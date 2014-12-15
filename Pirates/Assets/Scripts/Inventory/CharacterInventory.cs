@@ -10,7 +10,8 @@ public class CharacterInventory {
 	[SerializeField]
 	private string characterName;
 
-
+	[SerializeField]
+	private CharacterStats statModifiers;
 
 	public static CharacterInventory Load(string _characterName) {
 
@@ -23,20 +24,23 @@ public class CharacterInventory {
 	private CharacterInventory(string _characterName) {
 		characterName = _characterName;
 		inventory = new Dictionary<int, ItemData>();
+		statModifiers = new CharacterStats();
 	}
 
-	public void OnEquippedItemInSlot(ItemData item, int slotId) {
+	public void EquipItemInSlot(ItemData item, int slotId) {
 
 		if (inventory.ContainsKey(slotId))
-			OnUnequippedItem(item, slotId);
+			UnequipItemInSlot(item, slotId);
 
 		inventory.Add(slotId, item);
+		statModifiers.AddStats(item.GetStatModifiers());
 		//CrewInventory.Instance.OnEquippedItem(item.itemName, this);
 	}
 
-	public void OnUnequippedItem(ItemData item, int slotId) {
+	public void UnequipItemInSlot(ItemData item, int slotId) {
 
 		//CrewInventory.Instance.OnUnequippedItem(item.itemName, this);
+		statModifiers.SubtractStats(inventory[slotId].GetStatModifiers());
 		inventory.Remove(slotId);
 	}
 
@@ -48,5 +52,20 @@ public class CharacterInventory {
 			return true;
 		}
 		return false;
+	}
+
+	public CharacterStats GetStatModifiersFromEquipment() {
+		return statModifiers;
+		/*CharacterStats modifiers = new CharacterStats();
+
+		foreach (KeyValuePair<int, itemData> pair in inventory)
+		{
+			modifiers.agility += inventory[pair.Key].agilityBonus;
+			modifiers.mind += inventory[pair.Key].mindBonus;
+			modifiers.strength += inventory[pair.Key].strengthBonus;
+			modifiers.health += inventory[pair.Key].healthBonus;
+			modifiers.swagger += inventory[pair.Key].swaggerBonus;
+		}
+		return modifiers;*/
 	}
 }

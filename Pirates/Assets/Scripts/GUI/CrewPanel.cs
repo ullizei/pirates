@@ -30,6 +30,8 @@ public class CrewPanel : MonoBehaviour {
 			buttonRect.SetParent(characterButtonsParent, false);
 			buttonRect.localPosition = new Vector3(offsetX, 0f, 0f);
 
+			if (i == 0)
+				button.Select();
 	
 			//buttonRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, offsetX, buttonRect.sizeDelta.x);
 			//buttonRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0f, buttonRect.sizeDelta.y);
@@ -39,5 +41,12 @@ public class CrewPanel : MonoBehaviour {
 		characterButtonsParent.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0f, offsetX);
 		//characterButtonsParent.anchorMax = Vector2.one;
 		//characterButtonsParent.anchorMin = Vector2.zero;
+	}
+
+	public void OnSelectedCharacter(Character character) {
+
+		for (int i = 0; i < characterButtons.Count; i++) {
+			characterButtons[i].Deselect();
+		}
 	}
 }

@@ -15,8 +15,8 @@ public class Crew {
 		}
 	}
 
-	private List<CharacterData> crewMembers;
-	public List<CharacterData> CrewMembers {
+	private List<Character> crewMembers;
+	public List<Character> CrewMembers {
 		get { return crewMembers; }
 	}
 
@@ -27,22 +27,12 @@ public class Crew {
 
 	private void LoadCrewMembers() {
 
-		crewMembers = new List<CharacterData>();
+		crewMembers = new List<Character>();
 
-		crewMembers.Add(new CharacterData("Glenn", GetRandomStats()));
-		crewMembers.Add(new CharacterData("Bob", GetRandomStats()));
-		crewMembers.Add(new CharacterData("George", GetRandomStats()));
+		crewMembers.Add(new Character("Glenn"));
+		crewMembers.Add(new Character("Bob"));
+		crewMembers.Add(new Character("George"));
 	}
 
-	private CharacterStats GetRandomStats() {
 
-		CharacterStats stats = new CharacterStats();
-		stats.agility = Random.Range(5, 18);
-		stats.health = Random.Range(5, 18);
-		stats.mind = Random.Range(5, 18);
-		stats.strength = Random.Range(5, 18);
-		stats.swagger = Random.Range(5, 18);
-
-		return stats;
-	}
 }

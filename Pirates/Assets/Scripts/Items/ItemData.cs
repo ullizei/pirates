@@ -52,4 +52,15 @@ public class ItemData {
 	public void Test() {
 		Debug.Log("Hello hej!");	
 	}
+
+	public CharacterStats GetStatModifiers() {
+
+		CharacterStats stats = new CharacterStats();
+		stats.agility = agilityBonus;
+		stats.health = healthBonus;
+		stats.mind = mindBonus;
+		stats.strength = strengthBonus;
+		stats.swagger = swaggerBonus;
+		return stats;
+	}
 }
