@@ -1,25 +1,27 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\CrewInspector.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\CrewInspector\EquipmentSlot.cs">
     <Files>
-      <File FileName="Assets\Scripts\Inventory\CharacterInventory.cs" Line="47" Column="2" />
-      <File FileName="Assets\Scripts\GUI\CrewPanel.cs" Line="34" Column="19" />
-      <File FileName="Assets\Scripts\GUI\StatsPanel.cs" Line="38" Column="37" />
-      <File FileName="Assets\Scripts\Character\CharacterStats.cs" Line="51" Column="1" />
-      <File FileName="Assets\Scripts\GUI\StatsPanelMeterBar.cs" Line="45" Column="17" />
-      <File FileName="Assets\Scripts\GUI\Stat.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\ItemSelectButton.cs" Line="27" Column="31" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\CrewInspector.cs" Line="89" Column="27" />
+      <File FileName="Assets\Scripts\Character\CharacterStats.cs" Line="62" Column="125" />
       <File FileName="Assets\UTILS\Scripts\PlayerPrefsHelper.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\CharacterSelectButton.cs" Line="38" Column="26" />
-      <File FileName="Assets\Scripts\GUI\EquipmentSlot.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Character\CharacterData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Character\Character.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Inventory\CrewInventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\ItemData.cs" Line="1" Column="1" />
-      <File FileName="Assets\UTILS\ThirdParty\HOTween\Hotween Extensions\HOTweenManager\Editor\HOTweenEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Crew\Crew.cs" Line="34" Column="32" />
-      <File FileName="Assets\Scripts\GUI\CrewInspector.cs" Line="47" Column="44" />
-      <File FileName="Assets\Scripts\GUI\EquipmentPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Testing\TestCrewInspector.cs" Line="14" Column="4" />
+      <File FileName="Assets\Scripts\Character\Character.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts\Inventory\CrewInventory.cs" Line="75" Column="11" />
+      <File FileName="Assets\Scripts\Items\ItemData.cs" Line="107" Column="66" />
+      <File FileName="Assets\Scripts\Crew\Crew.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Testing\TestCrewInspector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\ItemInfoPanel.cs" Line="35" Column="42" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\InventoryPanel.cs" Line="53" Column="5" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\CrewPanel.cs" Line="44" Column="27" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\CharacterSelectButton.cs" Line="35" Column="38" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\StatsPanel.cs" Line="66" Column="30" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\Stat.cs" Line="58" Column="27" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\EquipmentPanel.cs" Line="22" Column="28" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\EquipmentSlot.cs" Line="46" Column="3" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\PopupPanel.cs" Line="24" Column="28" />
+      <File FileName="Assets\Scripts\Inventory\CharacterInventory.cs" Line="65" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

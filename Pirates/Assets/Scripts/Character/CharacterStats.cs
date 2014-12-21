@@ -10,6 +10,17 @@ public class CharacterStats {
 	public int mind;
 	public int health;
 
+	public static CharacterStats Copy(CharacterStats original) {
+
+		CharacterStats copy = new CharacterStats();
+		copy.agility = original.agility;
+		copy.strength = original.strength;
+		copy.health = original.health;
+		copy.mind = original.mind;
+		copy.swagger = original.swagger;
+		return copy;
+	}
+
 	public int GetStat(StatType stat) {
 		switch (stat)
 		{
@@ -45,6 +56,10 @@ public class CharacterStats {
 		agility += statsToAdd.agility;
 		mind += statsToAdd.mind;
 		health += statsToAdd.health;
+	}
+
+	public void Print() {
+		Debug.Log("[Swagger: "+swagger+"] [Strength: "+strength+"] [Agility: "+agility+"] [Mind: "+mind+"] [Health: "+health+"]");
 	}
 }
 

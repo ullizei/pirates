@@ -10,6 +10,8 @@ public class CrewInventory {
 	[SerializeField]
 	private Dictionary<string, ItemInventoryInfo> itemInfos;
 
+	private Dictionary<ItemType, List<ItemData>> itemsByType;
+
 	private static CrewInventory instance = null;
 	public static CrewInventory Instance {
 		get
@@ -18,10 +20,25 @@ public class CrewInventory {
 			{
 				if (PlayerPrefs.HasKey(PPKeys.CrewInventoryPPKey))
 					instance = (CrewInventory) PlayerPrefsHelper.LoadObject(PPKeys.CrewInventoryPPKey);
-				else
+				else {
 					instance = new CrewInventory();
+					instance.items = new Dictionary<string, ItemData>();
+					instance.itemInfos = new Dictionary<string, ItemInventoryInfo>();
+					instance.itemsByType = new Dictionary<ItemType, List<ItemData>>();
+					instance.AddAllItemsFromItemdatabase();
+				}
 			}
 			return instance;
+		}
+	}
+
+	//use this for testing!
+	private void AddAllItemsFromItemdatabase() {
+
+		ItemDatabase itemDatabase = ItemDatabase.Instance;
+
+		for (int i = 0; i < itemDatabase.items.Count; i++) {
+			AddItem(itemDatabase.items[i], 2);
 		}
 	}
 
@@ -35,6 +52,11 @@ public class CrewInventory {
 			itemInfos.Add(item.itemName, new ItemInventoryInfo());
 			itemInfos[item.itemName].amount = amount;
 			itemInfos[item.itemName].equippedBy = new List<Character>();
+
+			if (!itemsByType.ContainsKey(item.itemType))
+				itemsByType.Add(item.itemType, new List<ItemData>());
+
+			itemsByType[item.itemType].Add(item);
 		}
 		Save();
 	}
@@ -46,6 +68,7 @@ public class CrewInventory {
 			int newAmount = itemInfos[itemName].amount - quantity;
 			if (newAmount <= 0)
 			{
+				itemsByType[items[itemName].itemType].Remove(items[itemName]);
 				items.Remove(itemName);
 				itemInfos.Remove(itemName);
 			}
@@ -80,6 +103,23 @@ public class CrewInventory {
 			return itemInfos[itemName].equippedBy;
 		else
 			return new List<Character>();
+	}
+
+	public List<ItemData> GetItemsOfType(ItemType itemType) {
+
+		if (itemsByType.ContainsKey(itemType))
+			return itemsByType[itemType];
+		else
+			return new List<ItemData>();
+	}
+
+	public bool HasAnyItemsOfType(ItemType itemType) {
+
+		if (itemsByType.ContainsKey(itemType)) {
+			if (itemsByType[itemType].Count > 0)
+				return true;
+		}
+		return false;
 	}
 
 	public void Save() {

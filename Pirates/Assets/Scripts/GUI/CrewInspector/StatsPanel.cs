@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class StatsPanel : MonoBehaviour {
 
 	//colors!
-	public static readonly Color textColorRed = Color.red;
-	public static readonly Color textColorGreen = Color.green;
-	public static readonly Color textColorNormal = Color.grey;
+	public static Color textColorRed = Color.red;
+	public static Color textColorGreen = new Color(78f/255f, 178f/255f, 54f/255f, 1f);
+	public static Color textColorNormal = Color.grey;
 
 	private RectTransform rect;
 
@@ -51,6 +51,18 @@ public class StatsPanel : MonoBehaviour {
 		//		inspectedCharacterData = selecetdCharacter;
 		//		inspectedCharacterName.text = selecetdCharacter.name;
 		//		inspectedCharacterJobLevel.text = "Level "+selecetdCharacter.level+" "+selecetdCharacter.job;
+	}
+
+	public void ShowStatChanges() {
+
+		Character selectedCharacter = CrewInspector.Instance.CurrentInspectedCharacter;
+		CharacterStats altStats = selectedCharacter.GetStatsIfEquippedItem(CrewInspector.Instance.CurrentInspectedItem, CrewInspector.Instance.CurrentInspectedSlot);
+
+		StatType[] statTypes = (StatType[]) System.Enum.GetValues(typeof(StatType));
+		for (int i = 0; i < statTypes.Length; i++)
+		{
+			stats[statTypes[i]].CompareValue(altStats.GetStat(statTypes[i]));
+		}
 	}
 
 	private void LayoutElements() {

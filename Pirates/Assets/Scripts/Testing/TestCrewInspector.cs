@@ -10,8 +10,7 @@ public class TestCrewInspector : MonoBehaviour {
 	
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.O)) {
-			Debug.Log ("O");
-			CrewInspector.Open();
+			CrewInspector.Open(transform);
 		}
 	}
 }

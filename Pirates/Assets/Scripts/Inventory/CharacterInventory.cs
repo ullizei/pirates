@@ -54,6 +54,17 @@ public class CharacterInventory {
 		return false;
 	}
 
+	public CharacterStats GetStatsModifiersIfEquippedItem(ItemData item, int slotId) {
+
+		CharacterStats altStatModifiers = CharacterStats.Copy(statModifiers);
+		ItemData currentEquippedItem;
+		if (GetItemInSlot(slotId, out currentEquippedItem))
+			altStatModifiers.SubtractStats(currentEquippedItem.GetStatModifiers());
+
+		altStatModifiers.AddStats(item.GetStatModifiers());
+		return altStatModifiers;
+	}
+
 	public CharacterStats GetStatModifiersFromEquipment() {
 		return statModifiers;
 		/*CharacterStats modifiers = new CharacterStats();

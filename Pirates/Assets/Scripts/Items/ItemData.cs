@@ -63,4 +63,47 @@ public class ItemData {
 		stats.swagger = swaggerBonus;
 		return stats;
 	}
+
+	public string GetItemStatModifiersList() {
+
+		System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+
+		//list stat modifiers first
+		if (swaggerBonus > 0)
+			stringBuilder.AppendLine("+"+swaggerBonus.ToString()+" Swagger");
+		else if (swaggerBonus < 0)
+			stringBuilder.AppendLine(swaggerBonus.ToString()+" Swagger");
+
+		if (strengthBonus > 0)
+			stringBuilder.AppendLine("+"+strengthBonus.ToString()+" Strength");
+		else if (strengthBonus < 0)
+			stringBuilder.AppendLine(strengthBonus.ToString()+" Strength");
+
+		if (agilityBonus > 0)
+			stringBuilder.AppendLine("+"+agilityBonus.ToString()+" Agility");
+		else if (agilityBonus < 0)
+			stringBuilder.AppendLine(agilityBonus.ToString()+" Agility");
+
+		if (mindBonus > 0)
+			stringBuilder.AppendLine("+"+mindBonus.ToString()+" Mind");
+		else if (mindBonus < 0)
+			stringBuilder.AppendLine(mindBonus.ToString()+" Mind");
+
+		if (healthBonus > 0)
+			stringBuilder.AppendLine("+"+healthBonus.ToString()+" Health");
+		else if (healthBonus < 0)
+			stringBuilder.AppendLine(healthBonus.ToString()+" Health");
+
+		//then others...
+		if (hpBonus > 0)
+			stringBuilder.AppendLine("+"+hpBonus.ToString()+" HP");
+		else if (hpBonus < 0)
+			stringBuilder.AppendLine(hpBonus.ToString()+" HP");
+
+		return stringBuilder.ToString();
+	}
+
+	public Sprite LoadItemIcon() {
+		return Resources.Load<Sprite>("items/Red"+itemType.ToString());
+	}
 }

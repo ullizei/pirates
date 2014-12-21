@@ -50,15 +50,19 @@ public class Stat : MonoBehaviour {
 
 		int diff = newValue - value;
 
-		valueText.text = value.ToString();
+		valueText.text = newValue.ToString();
 		Color textColor = StatsPanel.textColorNormal;
 
-		if (diff >= 0) {
-			modifierText.text = "(+"+modifier+")";
+		if (diff == 0) {
+			modifierText.text = "";
+			textColor = StatsPanel.textColorNormal;
+		}
+		if (diff > 0) {
+			modifierText.text = "(+"+diff+")";
 			textColor = StatsPanel.textColorGreen;
 		}
-		else {
-			modifierText.text = "("+modifier+")";
+		else if (diff < 0) {
+			modifierText.text = "("+diff+")";
 			textColor = StatsPanel.textColorRed;
 		}
 
