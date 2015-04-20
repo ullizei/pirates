@@ -83,13 +83,13 @@ public class StatsPanel : MonoBehaviour {
 		offsetY += elemRect.sizeDelta.y + 5f;
 
 		//Experience meter
-		expMeter = StatsPanelMeterBar.Create("EXP", Color.blue);
+		expMeter = StatsPanelMeterBar.Create("EXP", Color.blue, MeterType.EXP);
 		elemRect = expMeter.GetComponent<RectTransform>();
 		LayoutElement(elemRect, margin+5f, offsetY);
 		offsetY += elemRect.sizeDelta.y + 5f;
 
 		//HP meter
-		hpMeter = StatsPanelMeterBar.Create("HP", Color.green);
+		hpMeter = StatsPanelMeterBar.Create("HP", Color.green, MeterType.HP);
 		elemRect = hpMeter.GetComponent<RectTransform>();
 		LayoutElement(elemRect, margin+5f, offsetY);
 		offsetY += elemRect.sizeDelta.y + 10f;

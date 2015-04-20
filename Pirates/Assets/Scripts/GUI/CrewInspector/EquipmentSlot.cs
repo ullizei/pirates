@@ -5,10 +5,12 @@ using System.Collections;
 public class EquipmentSlot : MonoBehaviour {
 
 	public int slotID;
-
+	
 	private ItemType contentType;
+
 	private Button button;
 	private Image defaultImage;
+	private Image alternativeDefaultImage = null;
 	private Image itemImage;
 
 	// Use this for initialization
@@ -17,6 +19,7 @@ public class EquipmentSlot : MonoBehaviour {
 		button = GetComponent<Button>();
 		defaultImage = transform.GetChild(0).GetComponent<Image>();
 		itemImage = transform.GetChild(1).GetComponent<Image>();
+
 		button.onClick.AddListener(this.OnClick);
 
 		//set content type
@@ -33,17 +36,25 @@ public class EquipmentSlot : MonoBehaviour {
 
 	public void ShowContent() {
 
+		gameObject.SetActive(true);
+
 		ItemData itemData;
-		CrewInspector.Instance.CurrentInspectedCharacter.GetItemInSlot(slotID, out itemData);
-
-		bool showDefaultImage = itemData == null;
-
-		defaultImage.gameObject.SetActive(showDefaultImage);
-		itemImage.gameObject.SetActive(!showDefaultImage);
-
-		if (!showDefaultImage)
+		if (CrewInspector.Instance.CurrentInspectedCharacter.GetItemInSlot(slotID, out itemData)) {
+			itemImage.gameObject.SetActive(true);
 			itemImage.sprite = itemData.LoadItemIcon();
+
+			defaultImage.gameObject.SetActive(false);
+			alternativeDefaultImage.gameObject.SetActive(false);
+		}
+		else if (CrewInspector.Instance.CurrentInspectedCharacter.CanUseItemOfType(contentType))
+		{
+			itemImage.gameObject.SetActive(false);
+			defaultImage.gameObject.SetActive(true);
+		}
+		else
+			gameObject.SetActive(false);
 	}
+	
 
 	public void OnClick() {
 
@@ -56,4 +67,5 @@ public class EquipmentSlot : MonoBehaviour {
 			CrewInspector.Instance.ShowInfoPopup(info, header);
 		}
 	}
+	
 }

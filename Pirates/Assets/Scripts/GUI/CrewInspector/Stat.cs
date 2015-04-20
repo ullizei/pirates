@@ -12,6 +12,10 @@ public class Stat : MonoBehaviour {
 	private int modifier;
 
 	private StatType statType;
+	private Button button;
+	private RectTransform rectTransform;
+
+	private ToolTipPanel statInfo = null;
 
 	public static Stat Create(StatType type) {
 
@@ -26,6 +30,23 @@ public class Stat : MonoBehaviour {
 
 		statType = type;
 		labelText.text = statType.ToString() +":";
+	}
+
+	void Start() {
+		rectTransform = GetComponent<RectTransform>();
+		button = GetComponent<Button>();
+		button.onClick.AddListener(this.ShowInfo);
+	}
+
+	public void ShowInfo() {
+		if (statInfo == null) {
+			statInfo = ToolTipPanel.Show(CrewInspector.Instance.transform, rectTransform, new Vector3(rectTransform.rect.width, 0f, 0f));
+			statInfo.SetText(ToolTipStrings.StatInfo(statType), GetToolTipInfoLabel());
+		}
+	}
+
+	public string GetToolTipInfoLabel() {
+		return statType.ToString();
 	}
 
 	public void SetValueAndModifier(int _value, int _modifier) {

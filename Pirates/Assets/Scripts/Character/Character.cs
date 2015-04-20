@@ -43,7 +43,15 @@ public class Character {
 
 	public bool GetItemInSlot(int slotId, out ItemData itemData) {
 		return inventory.GetItemInSlot(slotId, out itemData);
-	}	
+	}
+	
+	public bool CanUseItemOfType(ItemType itemType) {
+
+		if (itemType == ItemType.NONE)
+			return false;
+		else
+			return true;
+	}
 
 	public string Name {
 		get { return characterData.name; }

@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\CrewInspector\ItemInfoPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\CrewInspector\Stat.cs">
     <Files>
+      <File FileName="Assets\Scripts\GUI\CrewInspector\ToolTipPanel.cs" Line="33" Column="17" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\ItemSelectButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\CrewInspector.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Character\CharacterStats.cs" Line="1" Column="1" />
@@ -12,18 +13,20 @@
       <File FileName="Assets\Scripts\Items\ItemData.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Crew\Crew.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Testing\TestCrewInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\CrewInspector\ItemInfoPanel.cs" Line="35" Column="42" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\ItemInfoPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\InventoryPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\CrewPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\CharacterSelectButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\StatsPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\CrewInspector\Stat.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\CrewInspector\Stat.cs" Line="48" Column="30" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\EquipmentPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\EquipmentSlot.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\PopupPanel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Inventory\CharacterInventory.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\CrewInspector\CrewInspectorButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameMap\CameraControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameMap\MapNode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameMap\ShipPositionMarker.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -98,6 +98,25 @@ public class CrewInventory {
 		}
 	}
 
+	public int GetFreeItemAmount(string itemName) {
+
+		if (itemInfos.ContainsKey(itemName))
+		{
+			int totalAmount = itemInfos[itemName].amount;
+			return totalAmount - itemInfos[itemName].equippedBy.Count;
+		}
+		else
+			return 0;
+	}
+
+	public int GetTotalItemAmount(string itemName) {
+
+		if (itemInfos.ContainsKey(itemName))
+			return itemInfos[itemName].amount;
+		else
+			return 0;
+	}
+
 	public List<Character> GetOwnersOfItem(string itemName) {
 		if (itemInfos.ContainsKey(itemName))
 			return itemInfos[itemName].equippedBy;

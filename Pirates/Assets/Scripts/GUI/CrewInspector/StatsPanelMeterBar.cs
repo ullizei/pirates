@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+public enum MeterType {
+	EXP,
+	HP
+}
+
 public class StatsPanelMeterBar : MonoBehaviour {
 
 	public Text label;
@@ -13,11 +18,15 @@ public class StatsPanelMeterBar : MonoBehaviour {
 	private int currentValue;
 	private float valueModifier = 0f;
 
+	private MeterType meterType;
+
 	private Color meterColor;
 	private Color orgModifierColor;
 
+	private Button button;
+	private RectTransform rectTransform;
 
-	public static StatsPanelMeterBar Create(string meterBarHeader, Color color) {
+	public static StatsPanelMeterBar Create(string meterBarHeader, Color color, MeterType type) {
 
 		GameObject meterBarObject = (GameObject) Instantiate(Resources.Load("GUI/StatsPanel/MeterBar"));
 		StatsPanelMeterBar statsPanelMeterBar = meterBarObject.GetComponent<StatsPanelMeterBar>();
@@ -25,6 +34,7 @@ public class StatsPanelMeterBar : MonoBehaviour {
 		statsPanelMeterBar.header = meterBarHeader;
 		statsPanelMeterBar.label.text = meterBarHeader;
 		statsPanelMeterBar.meterBar.color = color;
+		statsPanelMeterBar.meterType = type;
 		//statsPanelMeterBar.modifierInfoLabel.text = "";
 		statsPanelMeterBar.Init();
 
@@ -39,7 +49,16 @@ public class StatsPanelMeterBar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				
+
+		rectTransform = GetComponent<RectTransform>();
+		button = GetComponent<Button>();
+		button.onClick.AddListener(this.ShowInfo);
+
+	}
+
+	void ShowInfo() {
+		ToolTipPanel toolTip = ToolTipPanel.Show(CrewInspector.Instance.transform, rectTransform, new Vector3(rectTransform.rect.width, 0f, 0f));
+		toolTip.SetText(ToolTipStrings.MeterBarInfo(meterType), ToolTipStrings.MeterBarLabel(meterType));
 	}
 
 	public void UpdateMeter(int _currentValue, int _maxValue, float _valueModifier) {

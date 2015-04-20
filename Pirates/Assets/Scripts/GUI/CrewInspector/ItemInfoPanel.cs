@@ -38,10 +38,29 @@ public class ItemInfoPanel : MonoBehaviour {
 		else
 			itemProperties.text = itemProps;
 
-		if (showingEquippedItem)
+		if (showingEquippedItem) {
 			equipUnequipButton.GetComponentInChildren<Text>().text = "Unequip";
-		else
+			EnableEquipButton(true);
+		}
+		else {
 			equipUnequipButton.GetComponentInChildren<Text>().text = "Equip";
+			EnableEquipButton(CrewInventory.Instance.GetFreeItemAmount(item.itemName) > 0);
+		}
+	}
+
+	private void EnableEquipButton(bool enable) {
+
+		Text buttonText = equipUnequipButton.GetComponentInChildren<Text>();
+		Color textColor = buttonText.color;
+
+		if (enable)
+			textColor.a = 1f;
+		else
+			textColor.a = 0.5f;
+
+		buttonText.color = textColor;
+		equipUnequipButton.interactable = enable;
+
 	}
 
 	public void OnClickedEquipUnequipButton() {
