@@ -1,9 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum ResourceType {
+	Gold,
+	Water,
+	Rum,
+	Oranges,
+	Provisions
+}
+
 [System.Serializable]
 public class CrewInventory {
 
+	//Resources
+	[SerializeField]
+	private int gold = 5000;
+
+	[SerializeField]
+	private int rum = 50;
+
+	[SerializeField]
+	private int water = 50;
+
+	[SerializeField]
+	private int oranges = 50;
+
+	[SerializeField]
+	private int provisions = 50;
+
+
+	//Items
 	[SerializeField]
 	private Dictionary<string, ItemData> items;
 
@@ -12,14 +38,17 @@ public class CrewInventory {
 
 	private Dictionary<ItemType, List<ItemData>> itemsByType;
 
+
 	private static CrewInventory instance = null;
 	public static CrewInventory Instance {
 		get
 		{
+			PlayerPrefs.DeleteKey(PPKeys.CrewInventoryPPKey);
+
 			if (instance == null)
 			{
 				if (PlayerPrefs.HasKey(PPKeys.CrewInventoryPPKey))
-					instance = (CrewInventory) PlayerPrefsHelper.LoadObject(PPKeys.CrewInventoryPPKey);
+					instance = Load();
 				else {
 					instance = new CrewInventory();
 					instance.items = new Dictionary<string, ItemData>();
@@ -141,9 +170,56 @@ public class CrewInventory {
 		return false;
 	}
 
+	public int GetResourceAmount(ResourceType type) {
+
+		switch (type) {
+		case ResourceType.Gold:
+			return gold;
+		case ResourceType.Oranges:
+			return oranges;
+		case ResourceType.Provisions:
+			return provisions;
+		case ResourceType.Rum:
+			return rum;
+		case ResourceType.Water:
+			return water;
+		}
+		return 0; //<- just to make compiler happy...
+	}
+
+	public void UpdateResourceAmount(ResourceType type, int amount) {
+
+		switch (type) {
+		case ResourceType.Gold:
+			gold += amount;
+			gold = Mathf.Max(0, gold);
+			break;
+		case ResourceType.Oranges:
+			oranges += amount;
+			oranges = Mathf.Max(0, oranges);
+			break;
+		case ResourceType.Provisions:
+			provisions += amount;
+			provisions = Mathf.Max(0, provisions);
+			break;
+		case ResourceType.Rum:
+			rum += amount;
+			rum = Mathf.Max(0, rum);
+			break;
+		case ResourceType.Water:
+			water += amount;
+			water = Mathf.Max(0, water);
+			break;
+		}
+	}
+
 	public void Save() {
 		PlayerPrefsHelper.SaveObject<CrewInventory>(this, PPKeys.CrewInventoryPPKey);
-	}		
+	}
+
+	public static CrewInventory Load() {
+		return (CrewInventory) PlayerPrefsHelper.LoadObject(PPKeys.CrewInventoryPPKey);
+	}	
 }
 
 [System.Serializable]

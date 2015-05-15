@@ -122,4 +122,8 @@ public class NodeConnection : MonoBehaviour {
 	public float Heuristic() {
 		return distance;
 	}
+
+	public float GetDistance() {
+		return distance;
+	}
 }

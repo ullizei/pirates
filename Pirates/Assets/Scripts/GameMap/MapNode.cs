@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MapNode : InputHandler {
 
+	public string locationID = "Unknown location";
+
 	private List<NodeConnection> connections;
 
 	private GameObject _gameObject;
@@ -20,10 +22,12 @@ public class MapNode : InputHandler {
 	{
 		if (TouchHitTarget(touch, _gameObject))
 		{
-			if (ShipPositionMarker.Instance.TravelToPort(this))
-			{
-				SoundManager.PlaySfx(Sfx.Click);
-			}
+			if (ShipPositionMarker.Instance.currentPort != this)
+				LocationInfoPanel.Open(this);
+//			if (ShipPositionMarker.Instance.TravelToPort(this))
+//			{
+//				SoundManager.PlaySfx(Sfx.Click);
+//			}
 		}
 	}
 

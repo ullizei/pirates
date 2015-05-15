@@ -29,26 +29,28 @@ public class ShipPositionMarker : MonoBehaviour {
 		get {return instance;}
 	}
 
-	public bool TravelToPort(MapNode newPort) {
+	public void TravelToPort(MapPath mapPath) {
+		StartCoroutine(TravelAlongMapPathRoutine(mapPath));
+	}
 
-		if (isSailing || newPort == currentPort)
-			return false;
+	private IEnumerator TravelAlongMapPathRoutine(MapPath mapPath) {
 
-		NodeConnection connection = currentPort.GetConnectionToNode(newPort);
-		if (connection != null)
-		{
-			StartCoroutine(TravelToPortRoutine(newPort, connection));
-			return true;
+		isSailing = true;
+		CameraControl.Instance.AllowScrolling = false;
+
+		NodeConnection connection;
+		for (int i = 1; i < mapPath.path.Count; i++) {
+			connection = currentPort.GetConnectionToNode(mapPath.path[i]);
+			yield return StartCoroutine(TravelToPortRoutine(mapPath.path[i], connection));
+			yield return new WaitForSeconds(0.1f);
 		}
-		else
-			return false;
+
+		isSailing = false;
+		CameraControl.Instance.AllowScrolling = true;
 	}
 
 	private IEnumerator TravelToPortRoutine(MapNode newPort, NodeConnection connection) {
 
-		isSailing = true;
-
-		CameraControl.Instance.AllowScrolling = false;
 		float cameraLerpTime = CameraControl.Instance.LerpToPosition(_transform.position);
 		yield return new WaitForSeconds(cameraLerpTime+0.1f);
 
@@ -70,9 +72,6 @@ public class ShipPositionMarker : MonoBehaviour {
 		}
 
 		currentPort = newPort;
-		isSailing = false;
-		CameraControl.Instance.AllowScrolling = true;
-
 	}
 
 	void OnDestroy() {

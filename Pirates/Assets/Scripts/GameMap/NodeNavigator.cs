@@ -1,94 +1,78 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class NodeNavigator : MonoBehaviour {
 
-	// Use this for initialization
-	/*void Start () {
+
+public class NodeNavigator {
 	
-	}
-	
-	public List<MapNode> GetRoute(MapNode fromNode, MapNode toNode) {
+	public static MapPath GetMapPath(MapNode fromNode, MapNode toNode) {
 
-		List<MapNode> closedSet = new List<MapNode>();
-		List<MapNode> openSet = new List<MapNode>();
-		openSet.Add(fromNode);
+		//Debug.Log("GetMapPath!");
 
-		return FindShortestPath(to, openSet, closedSet);
-	}
+		//create a path to begin exploring
+		MapPath bestPath = new MapPath();
+		bestPath.AddNode(fromNode);
 
-	//open set: nodes to search
-	//closed set: nodes already seraced
-	private List<MapNode> FindShortestPath(MapNode goal, List<MapNode> openSet, List<MapNode> closedSet) {
+		//create a list of possible paths
+		List<MapPath> paths = new List<MapPath>();
+		paths.Add(bestPath);
 
-		MapNode currentNode = GetNextNode(openSet, closedSet);
-	}
+		List<NodeConnection> newConnections;
+		MapNode currentNode;
+		MapNode tempNode;
+		while (bestPath != null) {
 
-	private MapNode GetNextNode(List<MapNode> openSet, List<MapNode> closedSet, MapNode goal) {
+			//Debug.Log ("-----------------------START LOOP!");
 
-		if (openSet.Count == 0)
-			return null;
-		else if (openSet.Count == 1)
-			return openSet[0];
-		else
-		{
-			MapNode bestNode = null;
-			for (int i = 1; i < openSet.Count; i++)
-			{
-				bestNode = GetBestNode(bestNode, onpenSet[i]);
+			if (bestPath.IsComplete(fromNode, toNode)) {
+				//Debug.Log("Found Complete path!");
+				break;
 			}
-			return bestNode;
-		}
-	}
-	
-	private MapNode GetBestNode(MapNode node1, MapNode node2, MapNode goalNode) {
 
-		if (node1 == null) return node2;
-		if (node2 == null) return node1;
+			currentNode = bestPath.EndNode;
+			newConnections = currentNode.GetConnections();
 
-		NodeConnection c1 = node1.GetConnectionToNode(goalNode);
-		NodeConnection c2 = node2.GetConnectionToNode(goalNode);
+			Debug.Log("Current node "+currentNode.name);
 
-		float dist1 = node1.GetDistanceToNode(goalNode);
-		float dist2 = node2.GetDistanceToNode(goalNode);
-
-		if ((c1 == null && c2 == null) || (c1 != null && c2 != null))
-		{
-			if (dist1 < dist2)
-				return node1;
-			else
-				return node2;
-		}
-		else
-		{
-			if (c1 != null)
-				return node1;
-			else
-				return node2;
-		}
-	}*/
-	
-
-
-	/*private List<MapNode> FindShortestPath(MapNode start, MapNode end, MapNode current, List<MapNode> path) {
-
-		NodeConnection connection = current.GetConnectionToNode(end);
-		if (connection != null)
-		{
-			path.Add(current);
-			return path;
-		}
-		else
-		{
-			List<NodeConnection> connections = from.GetConnections();
-			if (connections != null)
+			for (int i = 0; i < newConnections.Count; i++)
 			{
-				foreach (NodeConnection c in connections)
-				{
-					FindShortestPath(start, end, c.GetOppositeEnd(current), path);
+				tempNode = newConnections[i].GetOppositeEnd(currentNode);
+				if (!bestPath.path.Contains(tempNode)) {
+					//Debug.Log("Added new path!");
+					MapPath newPath = new MapPath(bestPath);
+					newPath.AddNode(tempNode);
+					paths.Add(newPath);
 				}
 			}
+
+			paths.Remove(bestPath);
+			bestPath = GetBestPath(paths);
 		}
-	}*/
+
+		return bestPath;
+	}
+
+	private static MapPath GetBestPath(List<MapPath> paths) {
+
+		//Debug.Log (string.Format("Get best of {0} paths...", paths.Count));
+
+		if (paths.Count > 0)
+		{
+			int indexOfBestPath = 0;
+			float shortestLength = paths[indexOfBestPath].length;
+
+			for (int i = 0; i < paths.Count; i++)
+			{
+				if (paths[i].length < shortestLength) {
+					indexOfBestPath = i;
+					shortestLength = paths[i].length;
+				}
+			}
+
+			return paths[indexOfBestPath];
+		}
+		else
+			return null;
+	}
 }
 

@@ -28,6 +28,18 @@ public class MyTools : MonoBehaviour {
 		}
 	}
 
+	[MenuItem ("MyTools/Database/Create map location database")]
+	static void CreateMapLocationDatabase () {
+		
+		if (Resources.Load("MapLocationDatabase") != null)
+			Debug.Log("MapLocationDatabase already exists!");
+		else
+		{
+			AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<MapLocationDatabase>(), "Assets/Database/Resources/MapLocationDatabase.asset");
+			AssetDatabase.SaveAssets();
+		}
+	}
+
 	public static GUIStyle GetHeaderStyle() {
 		
 		GUIStyle headerStyle = new GUIStyle(EditorStyles.label);
@@ -46,5 +58,15 @@ public class MyTools : MonoBehaviour {
 		foldoutStyle.fontStyle = FontStyle.Bold;
 		
 		return foldoutStyle;
+	}
+
+	public static GUIStyle GetItalicStyle() {
+		
+		GUIStyle italicStyle = new GUIStyle(EditorStyles.label);
+		
+		italicStyle.fontSize = 11;
+		italicStyle.fontStyle = FontStyle.Italic;
+		
+		return italicStyle;
 	}
 }
