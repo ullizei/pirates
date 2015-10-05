@@ -44,7 +44,8 @@ public class EquipmentSlot : MonoBehaviour {
 			itemImage.sprite = itemData.LoadItemIcon();
 
 			defaultImage.gameObject.SetActive(false);
-			alternativeDefaultImage.gameObject.SetActive(false);
+			if (alternativeDefaultImage != null)
+				alternativeDefaultImage.gameObject.SetActive(false);
 		}
 		else if (CrewInspector.Instance.CurrentInspectedCharacter.CanUseItemOfType(contentType))
 		{
