@@ -20,7 +20,11 @@ public class LocationInfoPanel : MonoBehaviour {
 	private MapNode mapNode;
 	private MapPath path;
 
-	public static void Open(MapNode node) {
+    private const float LOW_RISK = 2f;
+    private const float MEDIUM_RISK = 4f;
+    private const float HIGH_RISK = 7f;
+
+    public static void Open(MapNode node) {
 
 		GameObject obj = (GameObject) Instantiate(Resources.Load("GUI/LocationInfoPanel"));
 		obj.transform.SetParent(GameObject.Find("ScreenSpaceCanvas").transform, false);
@@ -66,12 +70,38 @@ public class LocationInfoPanel : MonoBehaviour {
 			//distance & route info
 			stringBuilder.AppendLine(string.Format("DISTANCE:\t{0} nautical miles / {1} days", Mathf.CeilToInt(path.length), Mathf.CeilToInt(path.length / 50f)));
 			stringBuilder.AppendLine(string.Format("ROUTE:\t{0}", path.ToString()));
+            stringBuilder.AppendLine();
+
+            stringBuilder.AppendLine(string.Format("RISK:\t{0}", ConvertRiskValueToColoredText(path.GetRiskAverage())));
 
 			travelInfo.text = stringBuilder.ToString();
 		}
 		else
 			travelInfo.text = "";
 	}
+
+    private string ConvertRiskValueToColoredText(float risk)
+    {
+        string riskLevel = "";
+        string color = "black";
+
+        if (risk <= LOW_RISK)
+        {
+            riskLevel = "LOW";
+            color = "green";
+        }
+        else if (risk <= MEDIUM_RISK)
+        {
+            riskLevel = "MEDIUM";
+            color = "orange";
+        }
+        else
+        {
+            riskLevel = "HIGH";
+            color = "red";
+        }
+        return string.Format("<color={0}>{1}</color>", color, riskLevel);
+    }
 
 	public void OnClickedCloseButton() {
 		Close ();

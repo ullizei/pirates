@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class NodeConnection : MonoBehaviour {
 
 	public MapNode point1, point2;
+    public float risk;
 	public List<Vector3> path;
 
 	private float distance;

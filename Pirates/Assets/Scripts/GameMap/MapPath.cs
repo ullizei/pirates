@@ -5,11 +5,14 @@ public class MapPath {
 
 	public List<MapNode> path;
 	public float length;
+    public float combinedRisk;
+
 
 	public MapPath() {
 
 		path = new List<MapNode>();
 		length = 0f;
+        combinedRisk = 0f;
 	}
 
 	public MapPath(MapPath toCopy) {
@@ -19,6 +22,7 @@ public class MapPath {
 			path.Add(toCopy.path[i]);
 		}
 		length = toCopy.length;
+        combinedRisk = toCopy.combinedRisk;
 	}
 
 	public MapNode EndNode {
@@ -37,6 +41,7 @@ public class MapPath {
 		if (path.Count > 1) {
 			NodeConnection connection = path[path.Count-2].GetConnectionToNode(path[path.Count-1]);
 			length += connection.GetDistance();
+            combinedRisk += connection.risk;
 		}
 	}
 
@@ -48,6 +53,14 @@ public class MapPath {
 		}
 		return false;
 	}
+
+    public float GetRiskAverage()
+    {
+        if (path.Count > 0)
+            return combinedRisk / ((float)path.Count);
+        else
+            return 0f;
+    }
 
 	public override string ToString()
 	{

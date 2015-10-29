@@ -16,14 +16,29 @@ public class NodeConnectionEditor : Editor {
 
 	public override void OnInspectorGUI() {
 
-		EditorGUILayout.PrefixLabel("Map node 1");
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel("Map node 1");
 		_target.point1 = (MapNode) EditorGUILayout.ObjectField(_target.point1, typeof(MapNode), true);
-		EditorGUILayout.PrefixLabel("Map node 2");
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel("Map node 2");
 		_target.point2 = (MapNode) EditorGUILayout.ObjectField(_target.point2, typeof(MapNode), true);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
+
+        //Properties of this connection
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel("Risk");
+        _target.risk = EditorGUILayout.FloatField(_target.risk);
+        EditorGUILayout.EndHorizontal();
 
 		if (_target.point1 != null && _target.point2 != null)
 		{
-			if (GUILayout.Button("Add path node"))
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Add path node"))
 				AddPathNode();
 
 			if (GUILayout.Button("Remove path node"))
